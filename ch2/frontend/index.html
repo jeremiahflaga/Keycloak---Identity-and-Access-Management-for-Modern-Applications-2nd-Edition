@@ -2,8 +2,14 @@
 <html>
 <head>
     <title>Keycloak Example Application</title>
-    <script type="text/javascript" src="KC_URL/js/keycloak.js"></script>
-    <script type="text/javascript">
+    <!-- <script type="text/javascript" src="KC_URL/js/keycloak.js"></script> -->
+    
+    <!-- <script type="module" src="keycloak.js"></script> -->
+     <!-- <script src="https://cdn.jsdelivr.net/npm/keycloak-js@26.2.1/lib/keycloak.min.js"></script> -->
+    
+    <!-- <script type="text/javascript"> -->
+    <script type="module">
+        import Keycloak from "https://cdn.jsdelivr.net/npm/keycloak-js@26.2.1/+esm";
         function output(content) {
             if (typeof content === 'object') {
                 content = JSON.stringify(content, null, 2)
@@ -35,7 +41,9 @@
             req.send();
         }
 
-        var kc = new Keycloak({ realm: 'myrealm', clientId: 'myclient' });
+        // var kc = new Keycloak({ realm: 'myrealm', clientId: 'myclient' });
+        var kc = new Keycloak({ url: 'http://localhost:8080', realm: 'myrealm', clientId: 'myclient' });
+        window.kc = kc;
         window.onload = function() {
             kc.init({'messageReceiveTimeout': 100000}).then(function() {
                 if(kc.authenticated) {
