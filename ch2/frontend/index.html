@@ -7,9 +7,7 @@
     <!-- <script type="module" src="keycloak.js"></script> -->
      <!-- <script src="https://cdn.jsdelivr.net/npm/keycloak-js@26.2.1/lib/keycloak.min.js"></script> -->
     
-    <!-- <script type="text/javascript"> -->
-    <script type="module">
-        import Keycloak from "https://cdn.jsdelivr.net/npm/keycloak-js@26.2.1/+esm";
+    <script type="text/javascript">
         function output(content) {
             if (typeof content === 'object') {
                 content = JSON.stringify(content, null, 2)
@@ -40,7 +38,10 @@
             req.setRequestHeader('Authorization', 'Bearer ' + kc.token);
             req.send();
         }
+    </script>
 
+    <script type="module">
+        import Keycloak from "https://cdn.jsdelivr.net/npm/keycloak-js@26.2.1/+esm";
         // var kc = new Keycloak({ realm: 'myrealm', clientId: 'myclient' });
         var kc = new Keycloak({ url: 'http://localhost:8080', realm: 'myrealm', clientId: 'myclient' });
         window.kc = kc;
